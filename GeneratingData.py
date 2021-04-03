@@ -1,23 +1,27 @@
-import pandas as pd, numpy as np
+import pandas as pd
+import numpy as np
 import random
 
 # Get data into auditing csv
-auditing = pd.read_csv("/home/carol/Downloads/Audit-Committees-Performance-Report.xlsx - 2020-2021.csv")
-
+auditing = pd.read_csv(
+    "/home/carol/Downloads/Audit-Committees-Performance-Report.xlsx - 2020-2021.csv")
+# excel_file = pd.ExcelFile(
+#     "Audit-Committees-Performance-Report.xlsx")
+# auditing = (excel_file, '2020-2021')
 # Display all columns when printing auditing.head()
-pd.set_option('display.max_columns', None) # display all columns
-#print(auditing.head())
+pd.set_option('display.max_columns', None)  # display all columns
+# print(auditing.head())
 
 # Drop Unnamed columns
-#auditing.drop(['Unnamed: 5', 'Unnamed: 6', 'Unnamed: 7'], axis=1) # drop columns
-#print(auditing.head())
+# auditing.drop(['Unnamed: 5', 'Unnamed: 6', 'Unnamed: 7'], axis=1) # drop columns
+# print(auditing.head())
 
 # Extract column of original cap dollar values
 original_cap = auditing.iloc[:, 1]
 print(original_cap)
 
 # Replace two rows of $ - that indicate missing values with $0.00 amount
-original_cap = original_cap.replace(['  $-    '],'$0.00')
+original_cap = original_cap.replace(['  $-    '], '$0.00')
 
 # Handle dollar sign strings: get rid of $, convert string number to a float
 original_cap = original_cap.replace('[\$,]', '', regex=True).astype(float)
@@ -36,4 +40,4 @@ for row in original_cap_array:
 for i in range(len(original_cap_generated)):
     original_cap_generated[i] = round(original_cap_generated[i], 2)
 
-print(original_cap_generated) # final rounded data
+print(original_cap_generated)  # final rounded data
