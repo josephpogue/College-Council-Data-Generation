@@ -2,7 +2,7 @@ import pandas as pd, numpy as np
 import random
 
 # Get data into auditing csv
-auditing = pd.read_csv("/home/carol/Downloads/Audit-Committees-Performance-Report.xlsx - 2020-2021.csv")
+auditing = pd.read_csv("Audit-Committees-Performance-Report-2020-2021.csv")
 
 # Display all columns when printing auditing.head()
 pd.set_option('display.max_columns', None) # display all columns
