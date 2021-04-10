@@ -34,7 +34,11 @@ spending_generated = []
 for row in original_cap_array:
     fixed_cost = row * 0.2
     spending_generated.append(np.random.normal(
+<<<<<<< HEAD
         (row - fixed_cost), 0.5*(row - fixed_cost)))
+=======
+        (row - fixed_cost), 0.25*(row - fixed_cost)))
+>>>>>>> 26cf8a27d2080dbf071e7d31a779633dfbd7e0d6
 
 # List comprehension version in case there's a lot of data in the future
 # original_cap_generated = [original_cap_generated.append(np.random.normal(row, 0.10*row)) for row in original_cap_array]
@@ -45,6 +49,7 @@ for i in range(len(original_cap_generated)):
 for i in range(len(spending_generated)):
     spending_generated[i] = round(spending_generated[i], 2)
 
+<<<<<<< HEAD
 df1 = pd.DataFrame(original_cap_generated)
 df2 = pd.DataFrame(spending_generated)
 df3 = pd.concat([df1, df2], axis=1)
@@ -52,3 +57,21 @@ df3.to_excel(writer)
 print(df3)  # final rounded data
 # print(df2)
 writer.save()
+=======
+print(original_cap_generated)  # final rounded data
+print(spending_generated)
+
+# Make a dataframe out of original_cap_generated
+original_cap_data = pd.DataFrame(original_cap_generated, columns=['Original Cap Generated Data'])
+
+# Make a dataframe out of spending_generated
+spending_data = pd.DataFrame(spending_generated, columns=['Spending Cap Generated Data'])
+
+frames = [original_cap_data, spending_data]
+both = pd.concat(frames, axis=1) # concatenate the two dataframes together by column to prevent NaN from appearing
+
+print(both.head())
+
+both.to_csv('Sheet1.csv', index=False)
+# both.to_excel("Sheet1.xlsx") I don't have Excel installed on my laptop so this doesn't work but it should if you have Excel installed
+>>>>>>> 26cf8a27d2080dbf071e7d31a779633dfbd7e0d6
