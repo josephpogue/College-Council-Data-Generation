@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import random
+import xlsxwriter
 
 # Get data into auditing csv
 auditing = pd.read_csv("Audit-Committees-Performance-Report-2020-2021.csv")
@@ -25,7 +26,7 @@ original_cap = original_cap.replace('[\$,]', '', regex=True).astype(float)
 
 # Convert original_cap Series to a numpy array
 original_cap_array = original_cap.values
-
+writer = pd.ExcelWriter('./NewData.xlsx', engine='xlsxwriter')
 original_cap_generated = []
 for row in original_cap_array:
     original_cap_generated.append(np.random.normal(row, 0.10*row))
@@ -47,6 +48,7 @@ for i in range(len(spending_generated)):
 df1 = pd.DataFrame(original_cap_generated)
 df2 = pd.DataFrame(spending_generated)
 df3 = pd.concat([df1, df2], axis=1)
+df3.to_excel(writer)
 print(df3)  # final rounded data
 # print(df2)
-df3.to_csv("NewData.csv")
+writer.save()
