@@ -44,5 +44,8 @@ for i in range(len(original_cap_generated)):
 for i in range(len(spending_generated)):
     spending_generated[i] = round(spending_generated[i], 2)
 
-print(original_cap_generated)  # final rounded data
-print(spending_generated)
+df1 = pd.DataFrame(original_cap_generated)
+df2 = pd.DataFrame(spending_generated)
+df3 = pd.concat([df1, df2], axis=1)
+print(df3)  # final rounded data
+# print(df2)
