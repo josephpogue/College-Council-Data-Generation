@@ -49,3 +49,4 @@ df2 = pd.DataFrame(spending_generated)
 df3 = pd.concat([df1, df2], axis=1)
 print(df3)  # final rounded data
 # print(df2)
+df3.to_csv("NewData.csv")
